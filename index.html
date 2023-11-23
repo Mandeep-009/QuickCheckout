@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quick Checkout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Quick Checkout</h1>
+  <video id="video" playsinline></video>
+  <div class="totalParent">
+    <div class="totalText">Total: </div>
+    <div class="totalValue" id="totalDiv"></div>
+  </div>
+  <input type="text" id="barcodeResult" placeholder="Detected barcode will appear here" >
+  <button id="addbtn">Add</button>
+  <button id="submitbtn">Submit</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
+  <script type="module" src="app.js"></script>
+  
+</body>
+</html>
