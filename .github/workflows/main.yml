@@ -13,4 +13,4 @@ jobs:
         env:
           MY_SECRET: ${{ secrets.FIREBASE_CONFIG }}
         run: |
-          echo $MY_SECRET >> ../../secret.json
+          echo $MY_SECRET > ../../secret.json
