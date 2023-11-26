@@ -1,9 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import {getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+import {getFirestore,doc,getDoc,addDoc,collection} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
-const firebaseConfig = {
-    // firebase server authentication keys
-};
+const secretValue = process.env.MY_SECRET;
+const firebaseConfig = JSON.parse(secretValue);
   
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -14,6 +13,7 @@ const addbtn = document.getElementById('addbtn');
 const submitbtn = document.getElementById('submitbtn');
 const totalDiv = document.getElementById('totalDiv');
 var total = 0;
+var receipt = [];
 totalDiv.textContent = total;
 
 // Function to start the camera and barcode detection
@@ -76,6 +76,7 @@ const addHandler = async()=>{
     const newDiv = document.createElement('div');
 
     if (docSnap.exists()) {
+        receipt.push(docSnap.data());
         total += docSnap.data().price;
         totalDiv.textContent = total;
         newDiv.textContent = `item name: ${docSnap.data().name}, price: ${docSnap.data().price}`;
@@ -91,3 +92,18 @@ const addHandler = async()=>{
   }
 };
 addbtn.addEventListener('click',addHandler);
+
+async function submitHandler () {
+  const docRef = await addDoc(collection(db, "receipts"), {
+    items: receipt,
+    total: total
+  });
+  if(total>0){
+    var link = `./qr.html?id=${docRef.id}&merchant=true`;
+    window.location.href = link;
+  }
+  else{
+    window.alert('cannot submit with zero amount');
+  }
+}
+submitbtn.addEventListener('click',submitHandler);
