@@ -13,6 +13,4 @@ jobs:
         env:
           MY_SECRET: ${{ secrets.FIREBASE_CONFIG }}
         run: |
-          # Parse the JSON string back to an object
-          const myObject = JSON.parse(process.env.MY_SECRET);
-          console.log(myObject);
+          echo "$MY_SECRET"
