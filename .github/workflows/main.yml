@@ -13,5 +13,6 @@ jobs:
         env:
           MY_SECRET: ${{ secrets.FIREBASE_CONFIG }}
         run: |
-          echo $MY_SECRET >> secret.json
-          cat secret.json
+          node app.js
+          node qr.js
+  
