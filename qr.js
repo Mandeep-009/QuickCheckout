@@ -2,8 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebas
 import {getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 const url = window.location.href;
-const parts = url.split('/');
-const baseUrl = parts.slice(0, 4).join('/'); 
+const baseUrl = url.split('/').slice(0, -1).join('/');
+
+console.log('Base URL:', baseUrl);
 
 const firebaseConfig = {
   apiKey: "AIzaSyAW9jWu21SHpjunQMTNvzc7OcLn19dZY_Q",
