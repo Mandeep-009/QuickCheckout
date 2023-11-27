@@ -7,9 +7,9 @@ https://mandeep-009.github.io/QuickCheckout/
 # Working
 Currently, all items are not in the database.
 Here are some sample barcodes to test:
-012496000433
-041333662336
-3059948003793
-688580794306
-8901058903164
+012496000433 , 
+041333662336 , 
+3059948003793 , 
+688580794306 , 
+8901058903164 , 
 8903595427660
