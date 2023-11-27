@@ -1,8 +1,20 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import {getFirestore,doc,getDoc,addDoc,collection} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+import {getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
-const secretValue = process.env.MY_SECRET;
-const firebaseConfig = JSON.parse(secretValue);
+const url = window.location.href;
+const parts = url.split('/');
+const baseUrl = parts.slice(0, 3).join('/'); 
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAW9jWu21SHpjunQMTNvzc7OcLn19dZY_Q",
+  authDomain: "receipt-system-12689.firebaseapp.com",
+  databaseURL: "https://receipt-system-12689-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "receipt-system-12689",
+  storageBucket: "receipt-system-12689.appspot.com",
+  messagingSenderId: "145988567998",
+  appId: "1:145988567998:web:474061542e89226b38efef",
+  measurementId: "G-2ZNSFBKKPP"
+};
 
 
 const queryString = window.location.search;
@@ -12,10 +24,11 @@ const merchant = urlParams.get('merchant');
 
 const newDiv = document.createElement('div');
 if(merchant==='true'){
+
     async function generateQRCode() {
         try {
-          const linkToEncode = `http://127.0.0.1:5500/QuickCheckout/qr.html?id=${id}&merchant=false`; 
-      
+          const linkToEncode = `${baseUrl}/qr.html?id=${id}&merchant=false`; 
+          
           const qr = qrcode(0, 'M');
           qr.addData(linkToEncode);
           qr.make();
@@ -32,6 +45,11 @@ if(merchant==='true'){
         try {
           const qrImage = await generateQRCode();
           newDiv.innerHTML = qrImage;
+          
+          const textDiv = document.createElement('div');
+          textDiv.textContent = 'Scan the above QR code for receipt';
+          newDiv.appendChild(textDiv);
+
         } catch (error) {
           // Handle errors, if any
           console.log(error);
@@ -39,6 +57,7 @@ if(merchant==='true'){
       }
       
       displayQRCode();
+      
 }
 else {
     const app = initializeApp(firebaseConfig);
@@ -57,3 +76,4 @@ else {
     getData();
 }
 document.body.appendChild(newDiv);
+
