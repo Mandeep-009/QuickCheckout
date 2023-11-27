@@ -3,7 +3,7 @@ import {getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/10.6.0
 
 const url = window.location.href;
 const parts = url.split('/');
-const baseUrl = parts.slice(0, 3).join('/'); 
+const baseUrl = parts.slice(0, 4).join('/'); 
 
 const firebaseConfig = {
   apiKey: "AIzaSyAW9jWu21SHpjunQMTNvzc7OcLn19dZY_Q",
