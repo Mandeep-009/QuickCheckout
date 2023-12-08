@@ -21,7 +21,9 @@ const barcodeInput = document.getElementById('barcodeResult');
 const addbtn = document.getElementById('addbtn');
 const submitbtn = document.getElementById('submitbtn');
 const totalDiv = document.getElementById('totalDiv');
+const list = document.querySelector('.list');
 var total = 0;
+var index = 1;
 var receipt = [];
 totalDiv.textContent = total;
 
@@ -85,16 +87,34 @@ const addHandler = async()=>{
     const docRef = doc(db,'products',productId);
     const docSnap = await getDoc(docRef);
 
-    const newDiv = document.createElement('div');
-
     if (docSnap.exists()) {
         receipt.push(docSnap.data());
         total += docSnap.data().price;
         totalDiv.textContent = total;
-        newDiv.textContent = `item name: ${docSnap.data().name}, price: ${docSnap.data().price}`;
+        const newDiv = document.createElement('div');
+        newDiv.className = 'item';
+        // newDiv.textContent = `item name: ${docSnap.data().name}, price: ${docSnap.data().price}`;
+        
+        const srDiv = document.createElement('div');
+        srDiv.textContent = index++;
+        srDiv.className = 'srdiv';
+        
+        const nameDiv = document.createElement('div');
+        nameDiv.textContent = docSnap.data().name;
+        nameDiv.className = 'namediv'
+
+        const priceDiv = document.createElement('div');
+        priceDiv.textContent = docSnap.data().price;
+        priceDiv.className = 'pricediv';
+
+        newDiv.appendChild(srDiv);
+        newDiv.appendChild(nameDiv);
+        newDiv.appendChild(priceDiv);
+
+        list.appendChild(newDiv);
     } 
     else {
-        newDiv.textContent = 'no such product found';
+        window.alert('No such product found');
     }
 
     document.body.appendChild(newDiv);

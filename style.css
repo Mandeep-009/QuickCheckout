@@ -19,3 +19,34 @@ button{
     color: white;
     font-weight: 500;
 }
+.totalParent{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+.inputsection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px;
+}
+.headers {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    font-weight: bolder;
+}
+.item {
+    display: flex;
+    text-align: center;
+}
+.srdiv{
+    width: 20%;
+}
+.namediv{
+    width: 60%;
+}
+.pricediv{
+    width: 20%;
+}

@@ -16,9 +16,21 @@
     <div class="totalText">Total: </div>
     <div class="totalValue" id="totalDiv"></div>
   </div>
-  <input type="text" id="barcodeResult" placeholder="Detected barcode will appear here" >
-  <button id="addbtn">Add</button>
-  <button id="submitbtn">Submit</button>
+  <div class="inputsection">
+    <input type="text" id="barcodeResult" placeholder="Detected barcode will appear here" >
+    <button id="addbtn">Add</button>
+    <button id="submitbtn">Submit</button>
+  </div>
+  
+  <div class="list">
+    <hr>
+    <div class="headers">
+      <div class="srdiv">Sr No.</div>
+      <div class="namediv">Item Name</div>
+      <div class="pricediv">Price</div>
+    </div>
+    <hr>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
   <script type="module" src="app.js"></script>

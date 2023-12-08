@@ -22,10 +22,11 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get('id');
 const merchant = urlParams.get('merchant');
+const list = document.querySelector('.list');
 
 const newDiv = document.createElement('div');
 if(merchant==='true'){
-
+    list.style.display = 'none';
     async function generateQRCode() {
         try {
           const linkToEncode = `${baseUrl}/qr.html?id=${id}&merchant=false`; 
@@ -45,11 +46,19 @@ if(merchant==='true'){
       async function displayQRCode() {
         try {
           const qrImage = await generateQRCode();
-          newDiv.innerHTML = qrImage;
+          const imageDiv = document.createElement('div');
+          imageDiv.innerHTML = qrImage;
+          newDiv.appendChild(imageDiv);
           
           const textDiv = document.createElement('div');
           textDiv.textContent = 'Scan the above QR code for receipt';
           newDiv.appendChild(textDiv);
+
+          newDiv.style.display = 'flex';
+          newDiv.style.flexDirection = 'column';
+          newDiv.style.height = '60vh';
+          newDiv.style.justifyContent = 'center';
+          newDiv.style.textAlign = 'center';
 
         } catch (error) {
           // Handle errors, if any
@@ -63,15 +72,38 @@ if(merchant==='true'){
 else {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);   
+    var index = 1;
     async function getData () {
         const receipt = await getDoc(doc(db,'receipts',id));
         receipt.data().items.forEach((item)=>{
             const itemDiv = document.createElement('div');
-            itemDiv.textContent = `item name: ${item.name}, price: ${item.price}`;
-            newDiv.appendChild(itemDiv);
+            itemDiv.className = 'item'
+            // itemDiv.textContent = `item name: ${item.name}, price: ${item.price}`;
+            const srDiv = document.createElement('div');
+            srDiv.textContent = index++;
+            srDiv.className = 'srdiv';
+            
+            const nameDiv = document.createElement('div');
+            nameDiv.textContent = item.name;
+            nameDiv.className = 'namediv'
+    
+            const priceDiv = document.createElement('div');
+            priceDiv.textContent = item.price;
+            priceDiv.className = 'pricediv';
+    
+            itemDiv.appendChild(srDiv);
+            itemDiv.appendChild(nameDiv);
+            itemDiv.appendChild(priceDiv);
+    
+            list.appendChild(itemDiv);
+            // newDiv.appendChild(itemDiv);
         })
         const totalDiv = document.createElement('div');
         totalDiv.textContent = `Total Amount = ${receipt.data().total}`;
+        totalDiv.style.textAlign = 'center';
+        totalDiv.style.fontSize = '20px'
+        totalDiv.style.fontWeight = 'bold';
+        totalDiv.style.margin = '20px'
         newDiv.appendChild(totalDiv);
     }
     getData();
