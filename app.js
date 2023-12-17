@@ -22,6 +22,7 @@ const addbtn = document.getElementById('addbtn');
 const submitbtn = document.getElementById('submitbtn');
 const totalDiv = document.getElementById('totalDiv');
 const list = document.querySelector('.list');
+const btn01 = document.querySelector('#btn01');
 var total = 0;
 var index = 1;
 var receipt = [];
@@ -29,6 +30,11 @@ totalDiv.textContent = total;
 
 const currentURL = window.location.href;
 console.log(currentURL)
+
+// Function to add new item to database button click event
+btn01.addEventListener('click',()=>{
+  window.location.href = 'newItem.html';
+})
 
 // Function to start the camera and barcode detection
 function startCamera() {
@@ -54,7 +60,7 @@ function initBarcodeScanner() {
         width: { min: 640 },
         height: { min: 480 },
         aspectRatio: { min: 1, max: 100 },
-        facingMode: 'environment', // Use the back camera if available
+        facingMode: 'environment'
       },
     },
     decoder: {
@@ -93,8 +99,6 @@ const addHandler = async()=>{
         totalDiv.textContent = total;
         const newDiv = document.createElement('div');
         newDiv.className = 'item';
-        // newDiv.textContent = `item name: ${docSnap.data().name}, price: ${docSnap.data().price}`;
-        
         const srDiv = document.createElement('div');
         srDiv.textContent = index++;
         srDiv.className = 'srdiv';
@@ -116,8 +120,6 @@ const addHandler = async()=>{
     else {
         window.alert('No such product found');
     }
-
-    document.body.appendChild(newDiv);
 
   } catch(err){
     console.log('error fetching document: ',err);

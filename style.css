@@ -2,6 +2,16 @@
     width: 100%;
     max-width: 600px;
 }
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+#btn01{
+    margin: 30px;
+    height: max-content;
+}
 .totalParent{
     display: flex;
     gap: 10px;
