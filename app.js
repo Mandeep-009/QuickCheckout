@@ -28,8 +28,6 @@ var index = 1;
 var receipt = [];
 totalDiv.textContent = total;
 
-const currentURL = window.location.href;
-console.log(currentURL)
 
 // Function to add new item to database button click event
 btn01.addEventListener('click',()=>{
@@ -134,7 +132,6 @@ async function submitHandler () {
   });
   if(total>0){
     var link = `${currentURL}qr.html?id=${docRef.id}&merchant=true`;
-
     window.location.href = link;
   }
   else{
@@ -142,4 +139,3 @@ async function submitHandler () {
   }
 }
 submitbtn.addEventListener('click',submitHandler);
-export default currentURL;

@@ -20,6 +20,8 @@ const names = document.querySelector('#name');
 const price = document.querySelector('#price');
 
 const btn11 = document.querySelector('#btn11');
+const url = window.location.href;
+const baseUrl = url.split('/').slice(0, -1).join('/');
 
 btn11.addEventListener('click',()=>{
     if(code.value===''||names.value===''||price.value===''){
@@ -39,7 +41,7 @@ btn11.addEventListener('click',()=>{
         setDoc(docRef,newData, { merge: true })
         .then(() => {
             window.alert("Document successfully written or updated!");
-            window.location.href = '/';
+            window.location.href = baseUrl;
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
