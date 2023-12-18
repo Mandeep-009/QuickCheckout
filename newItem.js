@@ -11,7 +11,10 @@ const firebaseConfig = {
   appId: "1:145988567998:web:474061542e89226b38efef",
   measurementId: "G-2ZNSFBKKPP"
 }
-  
+
+document.body.style.backgroundColor = '#222221';
+document.body.style.color = 'white';
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 

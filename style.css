@@ -2,6 +2,16 @@
     width: 100%;
     max-width: 600px;
 }
+
+body,input{
+    background-color: #222221;
+    color: white
+}
+
+input{
+    border: 1px solid white;
+}
+
 .heading{
     display: flex;
     justify-content: space-between;
@@ -9,7 +19,7 @@
     
 }
 #btn01{
-    margin: 30px;
+    margin: 10px;
     height: max-content;
 }
 .totalParent{
@@ -28,11 +38,13 @@ button{
     border-radius: 5px;
     color: white;
     font-weight: 500;
+    cursor: pointer;
 }
 .totalParent{
     display: flex;
     justify-content: center;
     font-weight: bold;
+    margin: 10px;
 }
 .inputsection{
     display: flex;

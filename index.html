@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quick Checkout</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="heading">
     <h1>Quick Checkout</h1>
-    <button id="btn01">Add item to database</button>
+    <span style="display: flex;align-items: center;">
+      <img src="night-mode.png" height="25px" title="change theme" style="background-color: white;border-radius: 50%;" id="btn009" alt="">
+      <button id="btn01">Add item to database</button>
+    </span>
   </div>
-  <br>
-  <video id="video" playsinline></video>
-  <br>
-  <p>Currently, all items are not in the database. Here are some sample barcodes to test: 012496000433 , 041333662336 , 3059948003793 , 688580794306 , 8901058903164 , 8903595427660</p>
-  <br>
+  <div style="display: flex;justify-content: center;"><video id="video" playsinline></video></div>
   <div class="totalParent">
     <div class="totalText">Total: </div>
     <div class="totalValue" id="totalDiv"></div>

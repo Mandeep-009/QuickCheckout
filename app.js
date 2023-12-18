@@ -23,11 +23,32 @@ const submitbtn = document.getElementById('submitbtn');
 const totalDiv = document.getElementById('totalDiv');
 const list = document.querySelector('.list');
 const btn01 = document.querySelector('#btn01');
+const btn009 = document.querySelector('#btn009');
+const input = document.querySelector('input');
+var dark = true;
 var total = 0;
 var index = 1;
 var receipt = [];
 totalDiv.textContent = total;
 
+btn009.addEventListener('click',()=>{
+  if(dark===false){
+    document.body.style.backgroundColor = '#222221';
+    document.body.style.color = 'white';
+    input.style.backgroundColor = '#222221';
+    input.style.color = 'white';
+    input.style.border = '1px solid white';
+    dark = true;
+  }
+  else{
+    document.body.style.backgroundColor = 'white';
+    document.body.style.color = 'black';
+    input.style.backgroundColor = 'white';
+    input.style.color = 'black';
+    input.style.border = '1px solid black';
+    dark = false;
+  }
+})
 
 // Function to add new item to database button click event
 btn01.addEventListener('click',()=>{
@@ -116,7 +137,7 @@ const addHandler = async()=>{
         list.appendChild(newDiv);
     } 
     else {
-        window.alert('No such product found');
+        window.alert('No such product found, you need to add item to database before accessing it; Pro tip: copy the barcode to clipboard and paste it on database page alongwith other details');
     }
 
   } catch(err){
@@ -131,6 +152,7 @@ async function submitHandler () {
     total: total
   });
   if(total>0){
+    const currentURL = window.location.href;
     var link = `${currentURL}qr.html?id=${docRef.id}&merchant=true`;
     window.location.href = link;
   }
