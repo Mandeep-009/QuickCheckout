@@ -8,17 +8,6 @@ const baseUrl = url.split('/').slice(0, -1).join('/');
 
 console.log('Base URL:', baseUrl);
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAW9jWu21SHpjunQMTNvzc7OcLn19dZY_Q",
-//   authDomain: "receipt-system-12689.firebaseapp.com",
-//   databaseURL: "https://receipt-system-12689-default-rtdb.asia-southeast1.firebasedatabase.app",
-//   projectId: "receipt-system-12689",
-//   storageBucket: "receipt-system-12689.appspot.com",
-//   messagingSenderId: "145988567998",
-//   appId: "1:145988567998:web:474061542e89226b38efef",
-//   measurementId: "G-2ZNSFBKKPP"
-// };
-
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
