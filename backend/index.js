@@ -2,13 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-app.use(cors(
-    {
-        origin: ["https://quick-checkout-api.vercel.app"],
-        methods: ["POST","GET"],
-        credentials: true
-    }
-));
+app.use(cors());
 app.use(express.json());
 
 const apiKey = `${process.env.API_KEY}`
