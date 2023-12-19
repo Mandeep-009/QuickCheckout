@@ -1,21 +1,23 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import {getFirestore,doc,getDoc} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
+
+
 const url = window.location.href;
 const baseUrl = url.split('/').slice(0, -1).join('/');
 
 console.log('Base URL:', baseUrl);
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAW9jWu21SHpjunQMTNvzc7OcLn19dZY_Q",
-  authDomain: "receipt-system-12689.firebaseapp.com",
-  databaseURL: "https://receipt-system-12689-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "receipt-system-12689",
-  storageBucket: "receipt-system-12689.appspot.com",
-  messagingSenderId: "145988567998",
-  appId: "1:145988567998:web:474061542e89226b38efef",
-  measurementId: "G-2ZNSFBKKPP"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAW9jWu21SHpjunQMTNvzc7OcLn19dZY_Q",
+//   authDomain: "receipt-system-12689.firebaseapp.com",
+//   databaseURL: "https://receipt-system-12689-default-rtdb.asia-southeast1.firebasedatabase.app",
+//   projectId: "receipt-system-12689",
+//   storageBucket: "receipt-system-12689.appspot.com",
+//   messagingSenderId: "145988567998",
+//   appId: "1:145988567998:web:474061542e89226b38efef",
+//   measurementId: "G-2ZNSFBKKPP"
+// };
 
 
 const queryString = window.location.search;
@@ -70,9 +72,28 @@ if(merchant==='true'){
       
 }
 else {
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);   
-    var index = 1;
+  var firebaseConfig = {};
+var app;
+var db;
+var index = 1;
+fetch('https://quick-checkout-api.vercel.app/firebase-config')
+    .then(response =>{
+        return response.json();
+    })
+    .then(data =>{
+        firebaseConfig = data;
+        app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        
+    })
+    .then(()=>{
+      getData();
+    })
+    .catch(error=>{
+        console.log('fetch error: ',error);
+    })
+
+    
     async function getData () {
         const receipt = await getDoc(doc(db,'receipts',id));
         receipt.data().items.forEach((item)=>{
@@ -106,7 +127,7 @@ else {
         totalDiv.style.margin = '20px'
         newDiv.appendChild(totalDiv);
     }
-    getData();
+    
 }
 document.body.appendChild(newDiv);
 

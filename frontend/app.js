@@ -1,20 +1,22 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import {getFirestore,doc,getDoc,addDoc,collection} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  //  firebase configuraion details
-  apiKey: "AIzaSyAW9jWu21SHpjunQMTNvzc7OcLn19dZY_Q",
-  authDomain: "receipt-system-12689.firebaseapp.com",
-  databaseURL: "https://receipt-system-12689-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "receipt-system-12689",
-  storageBucket: "receipt-system-12689.appspot.com",
-  messagingSenderId: "145988567998",
-  appId: "1:145988567998:web:474061542e89226b38efef",
-  measurementId: "G-2ZNSFBKKPP"
-}
-  
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+var firebaseConfig = {};
+var app;
+var db;
+fetch('https://quick-checkout-api.vercel.app/firebase-config')
+    .then(response =>{
+        return response.json();
+    })
+    .then(data =>{
+        firebaseConfig = data;
+        app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+    })
+    .catch(error=>{
+        console.log('fetch error: ',error);
+    })
+
 
 const video = document.getElementById('video');
 const barcodeInput = document.getElementById('barcodeResult');
@@ -104,7 +106,7 @@ window.onload = function () {
   startCamera();
 };
 
-const db = getFirestore();
+
 
 const addHandler = async()=>{
   const productId = barcodeInput.value;
