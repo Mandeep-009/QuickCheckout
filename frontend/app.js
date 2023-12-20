@@ -4,7 +4,7 @@ import {getFirestore,doc,getDoc,addDoc,collection} from "https://www.gstatic.com
 var firebaseConfig = {};
 var app;
 var db;
-fetch(`${process.env.BACKEND_URL}`)
+fetch('https://quick-checkout-api.vercel.app/firebase-config')
     .then(response =>{
         return response.json();
     })
