@@ -59,7 +59,7 @@ btn01.addEventListener('click',()=>{
 
 // Function to start the camera and barcode detection
 function startCamera() {
-  navigator.mediaDevices.getUserMedia({ video: {facingMode: 'environment'} })
+  navigator.mediaDevices.getUserMedia({ video: {facingMode: 'environment'},audio: false })
     .then(function (stream) {
       video.srcObject = stream;
       video.play();
