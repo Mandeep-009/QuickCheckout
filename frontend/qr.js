@@ -65,7 +65,7 @@ else {
 var app;
 var db;
 var index = 1;
-fetch('https://quick-checkout-api.vercel.app/firebase-config')
+fetch(`${process.env.BACKEND_URL}`)
     .then(response =>{
         return response.json();
     })
