@@ -115,6 +115,14 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
         totalDiv.style.fontWeight = 'bold';
         totalDiv.style.margin = '20px'
         newDiv.appendChild(totalDiv);
+
+        const paymentDiv = document.createElement('div');
+        const aTag = document.createElement('a');
+        aTag.setAttribute('href',"upi://pay?pa=mandeepgahlawat009@okaxis&pn=Mandeep&cu=INR");
+        aTag.innerText = "Pay Now";
+        paymentDiv.append(aTag);
+        paymentDiv.style.textAlign = 'center';
+        newDiv.appendChild(paymentDiv);
     }
     
 }
