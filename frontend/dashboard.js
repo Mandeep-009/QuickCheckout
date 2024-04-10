@@ -154,8 +154,7 @@ async function submitHandler () {
     total: total
   });
   if(total>0){
-    const currentURL = window.location.href;
-    var link = `${currentURL}qr.html?id=${docRef.id}&merchant=true`;
+    var link = `qr.html?id=${docRef.id}&merchant=true`;
     window.location.href = link;
   }
   else{

@@ -14,11 +14,30 @@
       <button id="btn01">Add item to database</button>
     </span>
   </div>
+  <div style="display: flex;justify-content: center;"><video id="video" playsinline></video></div>
+  <div class="totalParent">
+    <div class="totalText">Total: </div>
+    <div class="totalValue" id="totalDiv"></div>
+  </div>
+  <div class="inputsection">
+    <input type="text" id="barcodeResult" placeholder="Detected barcode will appear here" >
+    <button id="addbtn">Add</button>
+    <button id="submitbtn">Submit</button>
+  </div>
   
+  <div class="list">
+    <hr>
+    <div class="headers">
+      <div class="srdiv">Sr No.</div>
+      <div class="namediv">Item Name</div>
+      <div class="pricediv">Price</div>
+    </div>
+    <hr>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script type="module" src="script.js"></script>
+  <script type="module" src="dashboard.js"></script>
   
 </body>
 </html>
