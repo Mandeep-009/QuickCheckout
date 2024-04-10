@@ -118,7 +118,7 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
 
         const paymentDiv = document.createElement('div');
         const aTag = document.createElement('a');
-        aTag.setAttribute('href',"upi://pay?pa=mandeepgahlawat009@okaxis&pn=Mandeep&cu=INR");
+        aTag.setAttribute('href',`upi://pay?pa=mandeepgahlawat009@okaxis&pn=Mandeep&cu=INR&am=${receipt.data().total}`);
         aTag.innerText = "Pay Now";
         paymentDiv.append(aTag);
         paymentDiv.style.textAlign = 'center';
