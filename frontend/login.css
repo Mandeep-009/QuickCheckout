@@ -23,6 +23,13 @@ body {
   min-height: 30vh;
   min-width: 40vh;
   border: 1px solid rgb(199, 196, 196);
+  width: 100vw;
+}
+
+.register-cont{
+  min-height: 560px;
+  padding: 1rem 1.5rem;
+  border: none;
 }
 
 .heading {
@@ -126,3 +133,12 @@ form {
   color: #d1cdcd;
   cursor: pointer;
 }
+
+.register-cont .inputbox{
+  margin-bottom: 10px;
+  height: 80px;
+}
+
+/* .register-cont .loginbtn{
+  height: 40px;
+} */
