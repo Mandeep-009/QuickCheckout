@@ -1,75 +1,79 @@
-#video {
-    width: 100%;
-    max-width: 600px;
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+body{
+    color: azure;
+    font-family: "Josefin Sans", sans-serif;
+    background: url("./images/back.jpg") ;
+    min-height: 425px;
+    background-position: center;
 }
 
-body,input{
-    background-color: #222221;
-    color: white
-}
-
-input{
-    border: 1px solid white;
-}
-
-.heading{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-}
 #btn01{
     margin: 10px;
     padding: 10px;
     height: max-content;
 }
-.totalParent{
-    display: flex;
-    gap: 10px;
-}
-input{
-    height: 30px;
-    font-size: 16px;
-}
+
 button{
-    height: 30px;
-    width: 100px;
-    background-color: #0984e3;
+    min-height: 30px;
+    min-width: 100px;
+    background-color: #0f76c5;
     border: none;
     border-radius: 5px;
     color: white;
     font-weight: 500;
     cursor: pointer;
 }
-.totalParent{
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    margin: 10px;
+
+
+.header{
+    text-align: right;
 }
-.inputsection{
+
+.main{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.heroImg{
+    margin-top: 50px;
+    height: 150px;
+    width: 270px;
+}
+
+.herocontent{
+    color: #d3fbfb;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    margin: 20px;
-}
-.headers {
-    display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    margin: 15px;
+    font-size: medium;
+    background-color: rgba(5, 10, 36, 0.841);
+    padding: 15px;
     text-align: center;
-    font-weight: bolder;
+    border-radius: 30px;
+    margin-bottom: 40px;
 }
-.item {
-    display: flex;
-    text-align: center;
+.para1{
+    color: rgb(89, 253, 253);
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    line-height: 1.5;
 }
-.srdiv{
-    width: 20%;
+.para2{
+    line-height: 1.2;
 }
-.namediv{
-    width: 60%;
-}
-.pricediv{
-    width: 20%;
+
+#getbtn{
+    font-weight: 540;
+    font-size: medium;
+    border-radius: 40px;
+    padding: 10px 20px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
 }
