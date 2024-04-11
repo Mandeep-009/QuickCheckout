@@ -4,6 +4,10 @@ import {getFirestore,doc,getDoc,addDoc,setDoc,collection} from "https://www.gsta
 var firebaseConfig = {};
 var app;
 var db;
+
+// phone number will be provided while reaching to this page.
+const phone = '9876543210';
+
 fetch('https://quick-checkout-api.vercel.app/firebase-config')
     .then(response =>{
         return response.json();
@@ -38,7 +42,7 @@ btn11.addEventListener('click',()=>{
         const codeVal = code.value;
         const nameVal = names.value;
 
-        const customID = codeVal;
+        const customID = codeVal+'-'+phone;
         const newData = {
             name: nameVal,
             price: priceVal

@@ -4,6 +4,10 @@ import {getFirestore,doc,getDoc,addDoc,collection} from "https://www.gstatic.com
 var firebaseConfig = {};
 var app;
 var db;
+
+// when a merchant has reached dashboard.html, it means, there is a merchant phone number already coming with parameters.
+const phone = '9876543210';
+
 fetch('https://quick-checkout-api.vercel.app/firebase-config')
     .then(response =>{
         return response.json();
@@ -110,8 +114,9 @@ window.onload = function () {
 
 const addHandler = async()=>{
   const productId = barcodeInput.value;
+  const productIdString = productId+'-'+phone;
   try {
-    const docRef = doc(db,'products',productId);
+    const docRef = doc(db,'products',productIdString);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -139,7 +144,8 @@ const addHandler = async()=>{
         list.appendChild(newDiv);
     } 
     else {
-        window.alert('No such product found, you need to add item to database before accessing it; Pro tip: copy the barcode to clipboard and paste it on database page alongwith other details');
+        navigator.clipboard.writeText(productId);
+        window.alert('No such product found, you need to add item to database; this barcode has been copied to the clipboard');
     }
 
   } catch(err){
@@ -151,7 +157,8 @@ addbtn.addEventListener('click',addHandler);
 async function submitHandler () {
   const docRef = await addDoc(collection(db, "receipts"), {
     items: receipt,
-    total: total
+    total: total,
+    phone
   });
   if(total>0){
     var link = `qr.html?id=${docRef.id}&merchant=true`;

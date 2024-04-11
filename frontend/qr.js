@@ -8,6 +8,8 @@ const baseUrl = url.split('/').slice(0, -1).join('/');
 
 console.log('Base URL:', baseUrl);
 
+// phone number taken from previous page
+const phone = '9876543210';
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -84,7 +86,31 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
 
     
     async function getData () {
-        const receipt = await getDoc(doc(db,'receipts',id));
+        // const receipt = await getDoc(doc(db,'receipts',id));
+        // const merchant = await getDoc(doc(db,'merchants',phone));
+
+        const receiptPromise = getDoc(doc(db, 'receipts', id))
+        .then(receiptDoc => {
+            if (receiptDoc.exists()) {
+                return receiptDoc;
+            } else {
+                throw new Error("Receipt not found");
+            }
+        });
+        const merchantPromise = getDoc(doc(db, 'merchants', phone))
+            .then(merchantDoc => {
+                if (merchantDoc.exists()) {
+                    return merchantDoc;
+                } else {
+                    throw new Error("Merchant not found");
+                }
+            });
+        const [receipt, merchant] = await Promise.all([receiptPromise, merchantPromise]);
+
+
+        const upiId = merchant.data().upiId;
+        const merchantName = merchant.data().name;
+
         receipt.data().items.forEach((item)=>{
             const itemDiv = document.createElement('div');
             itemDiv.className = 'item'
@@ -118,7 +144,7 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
 
         const paymentDiv = document.createElement('div');
         const aTag = document.createElement('a');
-        aTag.setAttribute('href',`upi://pay?pa=mandeepgahlawat009@okaxis&pn=Mandeep&cu=INR&am=${receipt.data().total}`);
+        aTag.setAttribute('href',`upi://pay?pa=${upiId}&pn=${merchantName}&cu=INR&am=${receipt.data().total}`);
         aTag.innerText = "Pay Now";
         paymentDiv.append(aTag);
         paymentDiv.style.textAlign = 'center';
