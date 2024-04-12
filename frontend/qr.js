@@ -9,10 +9,9 @@ const baseUrl = url.split('/').slice(0, -1).join('/');
 console.log('Base URL:', baseUrl);
 
 // phone number taken from previous page
-const phone = '9876543210';
-
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
+const phone = urlParams.get('mrid');
 const id = urlParams.get('id');
 const merchant = urlParams.get('merchant');
 const list = document.querySelector('.list');
@@ -22,7 +21,7 @@ if(merchant==='true'){
     list.style.display = 'none';
     async function generateQRCode() {
         try {
-          const linkToEncode = `${baseUrl}/qr.html?id=${id}&merchant=false`; 
+          const linkToEncode = `${baseUrl}/qr.html?id=${id}&merchant=false&mrid=${phone}`; 
           
           const qr = qrcode(0, 'M');
           qr.addData(linkToEncode);

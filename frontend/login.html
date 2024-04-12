@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link rel="stylesheet" href="login.css" />
+    <script type="module" src="login.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -13,7 +14,7 @@
           <h2 class="heading">Login</h2>
           <div class="inputbox">
             <p>Email/Phone</p>
-            <input type="text" id="emailbox" placeholder="Email" />
+            <input type="text" id="emailbox" placeholder="Email / phone number" />
           </div>
           <div class="inputbox">
             <p>Password</p>
@@ -21,7 +22,7 @@
           </div>
           <a href="#"><p class="forgot">Forgot Password?</p></a>
           <div class="loginbtn">
-              <button type="submit">Log In</button>
+              <button type="submit" id="login">Log In</button>
           </div>
           <a href="./register.html" ><p class="register-link">Don&#39;t have an account yet?&nbsp; </p><p class="sign">Sign Up</p></a>
         </div>

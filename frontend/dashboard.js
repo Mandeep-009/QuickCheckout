@@ -6,7 +6,9 @@ var app;
 var db;
 
 // when a merchant has reached dashboard.html, it means, there is a merchant phone number already coming with parameters.
-const phone = '9876543210';
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const phone = urlParams.get('mrid');
 
 fetch('https://quick-checkout-api.vercel.app/firebase-config')
     .then(response =>{
@@ -58,7 +60,7 @@ btn009.addEventListener('click',()=>{
 
 // Function to add new item to database button click event
 btn01.addEventListener('click',()=>{
-  window.location.href = 'newItem.html';
+  window.location.href = `newItem.html?mrid=${phone}`;
 })
 
 // Function to start the camera and barcode detection
@@ -161,7 +163,7 @@ async function submitHandler () {
     phone
   });
   if(total>0){
-    var link = `qr.html?id=${docRef.id}&merchant=true`;
+    var link = `qr.html?id=${docRef.id}&merchant=true&mrid=${phone}`;
     window.location.href = link;
   }
   else{

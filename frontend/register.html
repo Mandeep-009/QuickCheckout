@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register Page</title>
     <link rel="stylesheet" href="login.css" />
+    <script type="module" src="register.js" defer></script>
   </head>
   <body>
     <div class="container register-cont">
@@ -13,26 +14,26 @@
           <h2 class="heading">Register</h2>
           <div class="inputbox">
             <p>Name</p>
-            <input type="text" class="emailbox" placeholder="Email" />
+            <input type="text" class="emailbox" placeholder="Name" id="name"/>
           </div>
           <div class="inputbox">
             <p>Email/Phone</p>
-            <input type="text" class="emailbox" placeholder="Email" />
+            <input type="text" class="emailbox" placeholder="Email / phone number" id="email"/>
           </div>
           <div class="inputbox">
             <p>Upi Id</p>
-            <input type="text" class="passbox" placeholder="Password" />
+            <input type="text" class="passbox" placeholder="UPI ID" id="upi"/>
           </div>
           <div class="inputbox">
             <p>Password</p>
-            <input type="password" class="passbox" placeholder="Password" />
+            <input type="password" class="passbox" placeholder="Password" id="pass1"/>
           </div>
           <div class="inputbox">
             <p>Confirm Password</p>
-            <input type="password"class="passbox" placeholder="Password" />
+            <input type="password"class="passbox" placeholder="Confirm Password" id="pass2"/>
           </div>
           <div class="loginbtn">
-              <button type="submit">Register</button>
+              <button type="submit" id="register">Register</button>
           </div>
           <a href="./login.html" ><p class="register-link">Already have an Account?&nbsp; </p><p class="sign">Login</p></a>
         </div>
