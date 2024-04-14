@@ -26,7 +26,7 @@ const pass2 = document.getElementById('pass2');
 const register = document.getElementById('register');
 const url = window.location.href;
 
-register.addEventListener('click',(e)=>{
+register.addEventListener('click',async(e)=>{
     e.preventDefault();
     if(  name.value==='' ||
          email.value==='' ||
@@ -43,12 +43,16 @@ register.addEventListener('click',(e)=>{
     const merchant = {name: name.value, upiId: upi.value, password: pass1.value};
     console.log(merchant);
     const docRef = doc(db,'merchants',email.value);
-        setDoc(docRef,merchant, { merge: true })
-        .then(() => {
-            window.alert("Merchant registered successfully");
-            window.location.href = url.split('/').slice(0, -1).join('/') + `/dashboard.html?mrid=${email.value}`;
-        })
-        .catch((error) => {
-            console.error("Error writing document: ", error);
-        });
+    try {
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            window.alert('Someone already registered by this email/phone');
+        } else {
+            await setDoc(docRef, merchant);
+            window.alert('Merchant registered successfully');
+        }
+    } catch (error) {
+        console.error("Error checking document:", error);
+    }
 })
