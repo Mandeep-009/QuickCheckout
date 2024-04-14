@@ -5,10 +5,10 @@ var firebaseConfig = {};
 var app;
 var db;
 
-// phone number will be provided while reaching to this page.
+// username will be provided while reaching to this page.
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const phone = urlParams.get('mrid');
+const username = urlParams.get('mrid');
 
 fetch('https://quick-checkout-api.vercel.app/firebase-config')
     .then(response =>{
@@ -33,7 +33,7 @@ const price = document.querySelector('#price');
 
 const btn11 = document.querySelector('#btn11');
 const url = window.location.href;
-const baseUrl = url.split('/').slice(0, -1).join('/') + `/dashboard.html?mrid=${phone}`;
+const baseUrl = url.split('/').slice(0, -1).join('/') + `/dashboard.html?mrid=${username}`;
 
 btn11.addEventListener('click',()=>{
     if(code.value===''||names.value===''||price.value===''){
@@ -44,7 +44,7 @@ btn11.addEventListener('click',()=>{
         const codeVal = code.value;
         const nameVal = names.value;
 
-        const customID = codeVal+'-'+phone;
+        const customID = codeVal+'-'+username;
         const newData = {
             name: nameVal,
             price: priceVal

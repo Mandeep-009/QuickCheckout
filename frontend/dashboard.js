@@ -5,10 +5,9 @@ var firebaseConfig = {};
 var app;
 var db;
 
-// when a merchant has reached dashboard.html, it means, there is a merchant phone number already coming with parameters.
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const phone = urlParams.get('mrid');
+const username = urlParams.get('mrid');
 
 fetch('https://quick-checkout-api.vercel.app/firebase-config')
     .then(response =>{
@@ -60,7 +59,7 @@ btn009.addEventListener('click',()=>{
 
 // Function to add new item to database button click event
 btn01.addEventListener('click',()=>{
-  window.location.href = `newItem.html?mrid=${phone}`;
+  window.location.href = `newItem.html?mrid=${username}`;
 })
 
 // Function to start the camera and barcode detection
@@ -116,7 +115,7 @@ window.onload = function () {
 
 const addHandler = async()=>{
   const productId = barcodeInput.value;
-  const productIdString = productId+'-'+phone;
+  const productIdString = productId+'-'+username;
   try {
     const docRef = doc(db,'products',productIdString);
     const docSnap = await getDoc(docRef);
@@ -160,10 +159,10 @@ async function submitHandler () {
   const docRef = await addDoc(collection(db, "receipts"), {
     items: receipt,
     total: total,
-    phone
+    username
   });
   if(total>0){
-    var link = `qr.html?id=${docRef.id}&merchant=true&mrid=${phone}`;
+    var link = `qr.html?id=${docRef.id}&merchant=true&mrid=${username}`;
     window.location.href = link;
   }
   else{

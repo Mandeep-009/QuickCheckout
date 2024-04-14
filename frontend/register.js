@@ -19,7 +19,7 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
 
     
 const name = document.getElementById('name');
-const email = document.getElementById('email');
+const username = document.getElementById('username');
 const upi = document.getElementById('upi');
 const pass1 = document.getElementById('pass1');
 const pass2 = document.getElementById('pass2');
@@ -29,7 +29,7 @@ const url = window.location.href;
 register.addEventListener('click',async(e)=>{
     e.preventDefault();
     if(  name.value==='' ||
-         email.value==='' ||
+         username.value==='' ||
          upi.value==='' ||
          pass1.value==='' ||
          pass2.value===''
@@ -42,12 +42,12 @@ register.addEventListener('click',async(e)=>{
 
     const merchant = {name: name.value, upiId: upi.value, password: pass1.value};
     console.log(merchant);
-    const docRef = doc(db,'merchants',email.value);
+    const docRef = doc(db,'merchants',username.value);
     try {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            window.alert('Someone already registered by this email/phone');
+            window.alert('Someone already registered by this username');
         } else {
             await setDoc(docRef, merchant);
             window.alert('Merchant registered successfully');

@@ -8,10 +8,9 @@ const baseUrl = url.split('/').slice(0, -1).join('/');
 
 console.log('Base URL:', baseUrl);
 
-// phone number taken from previous page
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const phone = urlParams.get('mrid');
+const username = urlParams.get('mrid');
 const id = urlParams.get('id');
 const merchant = urlParams.get('merchant');
 const list = document.querySelector('.list');
@@ -22,7 +21,7 @@ if(merchant==='true'){
 
     async function generateQRCode() {
       try {
-          const linkToEncode = `${baseUrl}/qr.html?id=${id}&merchant=false&mrid=${phone}`; 
+          const linkToEncode = `${baseUrl}/qr.html?id=${id}&merchant=false&mrid=${username}`; 
           
           const qr = new QRCode({
               content: linkToEncode,
@@ -89,8 +88,6 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
 
     
     async function getData () {
-        // const receipt = await getDoc(doc(db,'receipts',id));
-        // const merchant = await getDoc(doc(db,'merchants',phone));
 
         const receiptPromise = getDoc(doc(db, 'receipts', id))
         .then(receiptDoc => {
@@ -100,7 +97,7 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
                 throw new Error("Receipt not found");
             }
         });
-        const merchantPromise = getDoc(doc(db, 'merchants', phone))
+        const merchantPromise = getDoc(doc(db, 'merchants', username))
             .then(merchantDoc => {
                 if (merchantDoc.exists()) {
                     return merchantDoc;
