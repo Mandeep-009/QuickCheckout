@@ -19,46 +19,50 @@ const list = document.querySelector('.list');
 const newDiv = document.createElement('div');
 if(merchant==='true'){
     list.style.display = 'none';
+
     async function generateQRCode() {
-        try {
+      try {
           const linkToEncode = `${baseUrl}/qr.html?id=${id}&merchant=false&mrid=${phone}`; 
           
-          const qr = qrcode(0, 'M');
-          qr.addData(linkToEncode);
-          qr.make();
-      
-          return qr.createImgTag();
-        } catch (error) {
+          const qr = new QRCode({
+              content: linkToEncode,
+              padding: 4,
+              width: 200,
+              height: 200
+          });
+          
+          return qr.svg();
+      } catch (error) {
           console.error('QR Code generation error:', error);
           throw error;
-        }
       }
-      
-      // Call the async function and display the generated QR code
-      async function displayQRCode() {
-        try {
+  }
+  
+  async function displayQRCode() {
+      try {
           const qrImage = await generateQRCode();
-          const imageDiv = document.createElement('div');
-          imageDiv.innerHTML = qrImage;
-          newDiv.appendChild(imageDiv);
+          const newDiv = document.createElement('div');
+          newDiv.innerHTML = qrImage;
           
           const textDiv = document.createElement('div');
           textDiv.textContent = 'Scan the above QR code for receipt';
+          textDiv.style.margin = '18px';
+          
           newDiv.appendChild(textDiv);
-
           newDiv.style.display = 'flex';
           newDiv.style.flexDirection = 'column';
           newDiv.style.height = '60vh';
           newDiv.style.justifyContent = 'center';
-          newDiv.style.textAlign = 'center';
-
-        } catch (error) {
-          // Handle errors, if any
+          newDiv.style.alignItems = 'center';
+          
+          document.body.appendChild(newDiv);
+      } catch (error) {
           console.log(error);
-        }
       }
-      
-      displayQRCode();
+  }
+  
+  displayQRCode();
+  
       
 }
 else {

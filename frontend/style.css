@@ -5,6 +5,7 @@ body{
     font-family: "Josefin Sans", sans-serif;
     background: url("./images/back.jpg") ;
     min-height: 425px;
+    height: 100vh;
     background-position: center;
 }
 

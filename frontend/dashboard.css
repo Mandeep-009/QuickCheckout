@@ -1,3 +1,9 @@
+.heroImg{
+    margin: 20px 10px;
+    height: 120px;
+    width: 220px;
+}
+
 #video {
     width: 100%;
     max-width: 600px;
