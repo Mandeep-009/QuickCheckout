@@ -24,6 +24,7 @@ const upi = document.getElementById('upi');
 const pass1 = document.getElementById('pass1');
 const pass2 = document.getElementById('pass2');
 const register = document.getElementById('register');
+const usernameDiv = document.getElementById('123122');
 const url = window.location.href;
 
 register.addEventListener('click',async(e)=>{
@@ -51,8 +52,46 @@ register.addEventListener('click',async(e)=>{
         } else {
             await setDoc(docRef, merchant);
             window.alert('Merchant registered successfully');
+            window.location.href = url.split('/').slice(0, -1).join('/') + `/dashboard.html?mrid=${username.value}`;
         }
     } catch (error) {
         console.error("Error checking document:", error);
     }
+})
+
+const userCheck = document.createElement('div');
+usernameDiv.appendChild(userCheck);
+userCheck.style.textAlign = 'right'
+userCheck.style.padding = '1px 1em'
+userCheck.style.display = 'none';
+
+setInterval(async() => {
+    if(username.value===''){
+        userCheck.textContent = 'Enter username';
+        userCheck.style.color = 'white';
+    }
+    else {
+        const docRef = doc(db,'merchants',username.value);
+        try {
+            const docSnap = await getDoc(docRef);
+            if(docSnap.exists()){
+                userCheck.textContent = 'This username is already taken';
+                userCheck.style.color = 'red';
+            }   
+            else{
+                userCheck.textContent = 'This username is available';
+                userCheck.style.color = 'green';
+            }
+        } catch (error) {
+            console.error("Error checking document:", error);
+        }
+    }
+}, 1500);
+    
+username.addEventListener('focusin',()=>{
+    userCheck.style.display = 'block';
+})
+
+username.addEventListener('focusout',()=>{
+    userCheck.style.display = 'none';
 })
