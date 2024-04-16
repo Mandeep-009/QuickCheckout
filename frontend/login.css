@@ -16,6 +16,40 @@ body {
   margin: 0;
 }
 
+
+.custom-alert {
+  display: none;
+  position: fixed;
+  top: 4rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #e4e4e4;
+  border: 1px solid #070606;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 1.3rem;
+}
+
+.custom-alert-content {
+  text-align: center;
+  
+}
+
+#custom-alert-close-btn {
+  margin-top: 10px;
+  cursor: pointer;
+  color: whitesmoke;
+  padding: 0.3rem;
+  border-radius: 1rem;
+  background-color: black;
+
+}
+
+#custom-alert-close-btn:hover{
+  color: black;
+  background-color: whitesmoke;
+}
+
 .container {
   backdrop-filter: blur(8px);
   padding: 2rem 1.5rem;
