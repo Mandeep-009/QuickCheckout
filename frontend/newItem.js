@@ -24,9 +24,6 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
     })
 
 
-document.body.style.backgroundColor = '#222221';
-document.body.style.color = 'white';
-
 const code = document.querySelector('#code');
 const names = document.querySelector('#name');
 const price = document.querySelector('#price');

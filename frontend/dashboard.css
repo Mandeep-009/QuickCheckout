@@ -9,15 +9,6 @@
     max-width: 600px;
 }
 
-body,input{
-    background-color: #222221;
-    color: white
-}
-
-input{
-    border: 1px solid white;
-}
-
 .heading{
     display: flex;
     justify-content: space-between;
