@@ -3,7 +3,7 @@
 body{
     color: azure;
     font-family: "Josefin Sans", sans-serif;
-    background: url("./images/back.jpg") ;
+    /* background: url("./images/back.jpg") ; */
     min-height: 425px;
     height: 100vh;
     background-position: center;
@@ -54,7 +54,7 @@ button{
     flex-direction: column;
     margin: 15px;
     font-size: medium;
-    background-color: rgba(5, 10, 36, 0.841);
+    background-color: #000000;
     padding: 15px;
     text-align: center;
     border-radius: 30px;

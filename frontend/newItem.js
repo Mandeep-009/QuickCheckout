@@ -38,6 +38,7 @@ btn11.addEventListener('click',()=>{
     }
     if (/^\d+$/.test(price.value)) {
         const priceVal = parseInt(price.value);  
+        if(priceVal<=0) return alert('price cannot be zero or less')
         const codeVal = code.value;
         const nameVal = names.value;
 

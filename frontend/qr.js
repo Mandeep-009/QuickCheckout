@@ -148,7 +148,7 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
        // aTag.style.background = 'red';
         aTag.style.textDecoration = 'none';
         aTag.style.fontSize = "large";
-        aTag.style.border='2px solid white';
+        aTag.style.border='2px solid black';
         aTag.style.borderRadius = '1rem';
         aTag.style.padding = '0.8rem';
         paymentDiv.style.marginTop='3rem';
@@ -156,15 +156,6 @@ fetch('https://quick-checkout-api.vercel.app/firebase-config')
         aTag.style.backgroundColor = 'black';
         aTag.style.fontFamily = 'Arial, sans-serif';
         aTag.style.transition='0.3s';
-        aTag.addEventListener('mouseover', function() {
-            // Change background color to red when mouse is over the element
-            aTag.style.backgroundColor = 'blue';
-          });
-          
-          aTag.addEventListener('mouseout', function() {
-            // Change background color back to blue when mouse leaves the element
-            aTag.style.backgroundColor = 'black';
-          });
 
         aTag.setAttribute('href',`upi://pay?pa=${upiId}&pn=${merchantName}&cu=INR&am=${receipt.data().total}`);
         aTag.innerText = "Pay Now";

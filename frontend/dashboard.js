@@ -27,16 +27,19 @@ const video = document.getElementById('video');
 const barcodeInput = document.getElementById('barcodeResult');
 const addbtn = document.getElementById('addbtn');
 const submitbtn = document.getElementById('submitbtn');
-const totalDiv = document.getElementById('totalDiv');
+const totalDiv1 = document.getElementById('totalDiv1');
+const totalDiv2 = document.getElementById('totalDiv2');
 const list = document.querySelector('.list');
 const btn01 = document.querySelector('#btn01');
 const btn009 = document.querySelector('#btn009');
 const input = document.querySelector('input');
+const submitDiv = document.querySelector('.submissionAvailable')
 var dark = false;
 var total = 0;
 var index = 1;
 var receipt = [];
-totalDiv.textContent = total;
+totalDiv1.textContent = total;
+totalDiv2.textContent = total;
 
 btn009.addEventListener('click',()=>{
   if(dark===false){
@@ -123,7 +126,11 @@ const addHandler = async()=>{
     if (docSnap.exists()) {
         receipt.push(docSnap.data());
         total += docSnap.data().price;
-        totalDiv.textContent = total;
+        totalDiv1.textContent = total;
+        totalDiv2.textContent = total;
+        if(total>=0){
+          submitDiv.style.display = 'inline'
+        }
         const newDiv = document.createElement('div');
         newDiv.className = 'item';
         const srDiv = document.createElement('div');

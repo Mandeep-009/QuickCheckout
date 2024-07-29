@@ -31,7 +31,7 @@ input{
 button{
     height: 30px;
     width: 100px;
-    background-color: #0984e3;
+    background-color: #000000;
     border: none;
     border-radius: 5px;
     color: white;
@@ -48,8 +48,11 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 7px;
     margin: 20px;
+}
+#barcodeInput {
+    border: 1px solid black;
 }
 .headers {
     display: flex;

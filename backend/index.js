@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+// require('dotenv').config()
+
 app.use(cors(
     {
         origin: ["https://quick-checkout-mu.vercel.app"],
@@ -9,6 +11,7 @@ app.use(cors(
         credentials: true
     }
 ));
+// app.use(cors())
 
 app.use(express.json());
 
