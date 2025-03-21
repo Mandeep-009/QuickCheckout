@@ -6,14 +6,14 @@ if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config()
 }
 
-app.use(cors(
-    {
-        origin: ["https://quick-checkout-mu.vercel.app","http://localhost:5500"],
-        methods: ["POST" , "GET" , "PATCH" , "PUT" , "DELETE" ],
-        credentials: true
-    }
-));
-// app.use(cors())
+// app.use(cors(
+//     {
+//         origin: ["https://quick-checkout-mu.vercel.app","http://localhost:5500"],
+//         methods: ["POST" , "GET" , "PATCH" , "PUT" , "DELETE" ],
+//         credentials: true
+//     }
+// ));
+app.use(cors())
 
 app.use(express.json());
 
