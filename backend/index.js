@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors(
     {
-        origin: ["https://quick-checkout-mu.vercel.app"],
+        origin: ["https://quick-checkout-mu.vercel.app","http://localhost:5500"],
         methods: ["POST" , "GET" , "PATCH" , "PUT" , "DELETE" ],
         credentials: true
     }
